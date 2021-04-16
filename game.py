@@ -9,6 +9,16 @@ scores = {
 	"ply": 0
 }
 
+def redoWeights(plyChoice):
+	for x in range(0, len(weights)):
+		if x == rpsglobals.choices.index(rpsglobals.opps[plyChoice]):
+			weights[x] += 0.1
+		else:
+			if weights[x] <= 0.00:
+				continue
+
+			weights[x] =
+
 def aiChoose(plyChoice):
 	sys.stdout.write("\n The AI is choosing, please wait")
 	sys.stdout.flush()
@@ -24,28 +34,24 @@ def aiChoose(plyChoice):
 	aiChoice = aiChoice[0]
 
 	if plyChoice == aiChoice:
-		weights[rpsglobals.choices.index(rpsglobals.opps[plyChoice])]
+		redoWeights(plyChoice)
+
 		sys.stdout.write("\r The AI chooses " + aiChoice + "! The score remains the same. (" + str(scores["ai"]) + " - " + str(scores["ply"]) + ")")
 		sys.stdout.flush()
 	elif plyChoice != rpsglobals.opps[aiChoice]:
+		redoWeights(plyChoice)
+
 		scores["ai"] += 1
 		sys.stdout.write("\r The AI chooses " + aiChoice + "! The AI has gained 1 point. (" + str(scores["ai"]) + " - " + str(scores["ply"]) + ")")
 		sys.stdout.flush()
 	else:
+		redoWeights(plyChoice)
+
 		scores["ply"] += 1
 		sys.stdout.write("\r The AI chooses " + aiChoice + "! You have gained 1 point. (" + str(scores["ai"]) + " - " + str(scores["ply"]) + ")")
 		sys.stdout.flush()
 
-		for x in range(0, len(weights)):
-			if x == rpsglobals.choices.index(rpsglobals.opps[plyChoice]):
-				weights[x] += 0.1
-			else:
-				if weights[x] <= 0:
-					continue
-	
-				weights[x] -= 0.05
-	
-		print(weights)
+	print(weights, rpsglobals.choices)
 
 	time.sleep(0.5)
 	ans = input("\n \n  > ")

@@ -4,9 +4,9 @@ import time
 choices = ["rock", "paper", "scissors"]
 
 opps = {
+	"scissors": "rock",
 	"rock": "paper",
-	"paper": "scissors",
-	"scissors": "rock"
+	"paper": "scissors"
 }
 
 
