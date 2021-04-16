@@ -40,7 +40,10 @@ def printro():
 	time.sleep(1)
 
 	global ans
-	ans = input(" Type rock, paper, or scissors to begin! \n \n  > ")
+	print(" Type rock, paper, or scissors to begin!")
+	time.sleep(0.5)
+	ans = input(" \n  > ")
+	ans = ans.lower()
 
 def main():
 	printro()
