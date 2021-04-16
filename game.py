@@ -12,12 +12,19 @@ scores = {
 def redoWeights(plyChoice):
 	for x in range(0, len(weights)):
 		if x == rpsglobals.choices.index(rpsglobals.opps[plyChoice]):
-			weights[x] += 0.1
-		else:
-			if weights[x] <= 0.00:
+			if weights[x] >= 1:
+				weights[x] = 1
 				continue
 
-			weights[x] =
+			weights[x] += 0.1
+		else:
+			if weights[x] <= 0: 
+				weights[x] = 0
+				continue
+
+			weights[x] -= 0.05
+
+		weights[x] = round(weights[x], 2)
 
 def aiChoose(plyChoice):
 	sys.stdout.write("\n The AI is choosing, please wait")
